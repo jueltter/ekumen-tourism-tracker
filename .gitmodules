@@ -1,0 +1,3 @@
+[submodule "ekumen-tourism-tracker-backend"]
+	path = ekumen-tourism-tracker-backend
+	url = https://github.com/jueltter/ekumen-tourism-tracker-backend.git
