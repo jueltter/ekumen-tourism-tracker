@@ -7,3 +7,6 @@
 [submodule "ekumen-tourism-tracker-eureka-server"]
 	path = ekumen-tourism-tracker-eureka-server
 	url = git@github.com:jueltter/ekumen-tourism-tracker-eureka-server.git
+[submodule "ekumen-tourism-tracker-api-gateway"]
+	path = ekumen-tourism-tracker-api-gateway
+	url = git@github.com:jueltter/ekumen-tourism-tracker-api-gateway.git
