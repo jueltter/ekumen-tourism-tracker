@@ -1,0 +1,47 @@
+services:
+  ekumen-tourism-tracker-eureka-server:
+    image: samagua/ekumen-tourism-tracker-eureka-server:latest
+    pull_policy: always
+    container_name: ekumen-tourism-tracker-eureka-server
+    ports:
+      - "8761:8761"
+    environment:
+      - EUREKA_SERVER_PORT=8761
+      # Additional Eureka server configuration can go here
+
+  ekumen-tourism-tracker-api-gateway:
+    image: samagua/ekumen-tourism-tracker-api-gateway:latest
+    pull_policy: always
+    container_name: ekumen-tourism-tracker-api-gateway
+    depends_on:
+      - ekumen-tourism-tracker-eureka-server
+    environment:
+      # Optionally override the Eureka URL via environment variable
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://ekumen-tourism-tracker-eureka-server:8761/eureka/
+      - SERVER_SERVLET_CONTEXT_PATH=/ekumen-tourism-tracker-api
+    ports:
+      - "8762:8762"
+
+  ekumen-tourism-tracker-backend:
+    image: samagua/ekumen-tourism-tracker-backend:latest
+    pull_policy: always
+    container_name: ekumen-tourism-tracker-backend
+    depends_on:
+      - ekumen-tourism-tracker-eureka-server
+    environment:
+      # Optionally override the Eureka URL via environment variable
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://ekumen-tourism-tracker-eureka-server:8761/eureka/
+    ports:
+      - "8081:8081"
+
+  ekumen-tourism-tracker-auth-server:
+    image: samagua/ekumen-tourism-tracker-auth-server:latest
+    pull_policy: always
+    container_name: ekumen-tourism-tracker-auth-server
+    depends_on:
+      - ekumen-tourism-tracker-eureka-server
+    environment:
+      # Optionally override the Eureka URL via environment variable
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://ekumen-tourism-tracker-eureka-server:8761/eureka/
+    ports:
+      - "8082:8082"
