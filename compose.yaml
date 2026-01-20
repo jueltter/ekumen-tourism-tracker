@@ -18,7 +18,6 @@ services:
     environment:
       # Optionally override the Eureka URL via environment variable
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://ekumen-tourism-tracker-eureka-server:8761/eureka/
-      - SERVER_SERVLET_CONTEXT_PATH=/ekumen-tourism-tracker-api
     ports:
       - "8762:8762"
 
